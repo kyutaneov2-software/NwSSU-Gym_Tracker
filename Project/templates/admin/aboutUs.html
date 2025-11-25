@@ -1,0 +1,276 @@
+{% extends "admin/base.html" %}
+
+{% block title %}NwSSU Gym Tracker - About Us{% endblock %}
+
+{% block navbar %}
+<!-- Admin Navbar -->
+<label class="Navbar-holder">
+    <input class="burger-sidebar" type="checkbox">
+    <div class="toggle-sidebar">
+        <span class="top_line common"></span>
+        <span class="middle_line common"></span>
+        <span class="bottom_line common"></span>
+    </div>
+
+    <div class="side-bar">
+        <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="" class="Gym-logo">
+        <h1 class="side-title">NwSSU Gym</h1>
+        <ul class="sidebar-menu">
+            <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{{ url_for('main.aboutUs') }}"><i class="fas fa-info-circle"></i> About Us</a></li>
+        </ul>
+    </div>
+</label>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+        <div class="m-header-card">
+            <p class="subtitle"><strong>ABOUT US</strong></p>
+            <p class="description">
+                At NwSSU Gym Tracker, we help you efficiently manage <span>all member information</span>, monitor <span>membership statuses</span>, 
+                and oversee <span>daily gym operations</span>. Our system provides real-time insights to streamline administration, 
+                enhance performance, and make gym management simpler and more effective.
+            </p>
+        </div>
+
+        <!-- ================== DEVELOPED BY SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+
+                <section class="developed-by">
+                    <h3>DEVELOPERS</h3>
+                    <p class="description">
+                        Our system is proudly developed by a dedicated team committed to streamlining gym management and providing real-time insights for better performance.
+                    </p>
+
+                    <div class="team-images">
+                        <div class="scrolling-wrapper">
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/JeremyIMG.jpg') }}" alt="Jeremy D Lobos">
+                                <p class="name">Jeremy D Lobos</p>
+                                <p class="role">Lead Designer | Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/frankIMG.jpg') }}" alt="Frankkennard Gonzales">
+                                <p class="name">Frankkennard Gonzales</p>
+                                <p class="role">Project Manager</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/EranIMG.jpg') }}" alt="Marc Eran Cahutay">
+                                <p class="name">Marc Eran Cahutay</p>
+                                <p class="role">Designer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global//images/ralphIMG.jpg') }}" alt="Ralph Cupat">
+                                <p class="name">Ralph Cupat</p>
+                                <p class="role">Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/MarkronIMG.jpg') }}" alt="Markron Constantino">
+                                <p class="name">Markron Constantino</p>
+                                <p class="role">Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/joebertIMG.jpg') }}" alt="Joebert Varona">
+                                <p class="name">Joebert Varona</p>
+                                <p class="role">System Analyst</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/AndrewIMG.jpg') }}" alt="Andrew Paguio">
+                                <p class="name">Andrew Paguio</p>
+                                <p class="role">Data Analyst</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/AbegailIMG.jpg') }}" alt="Abegail Calagos">
+                                <p class="name">Abegail Calagos</p>
+                                <p class="role">Designer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+
+                            <!--Duplicated-->
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/JeremyIMG.jpg') }}" alt="Jeremy D Lobos">
+                                <p class="name">Jeremy D Lobos</p>
+                                <p class="role">Lead Designer | Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/frankIMG.jpg') }}" alt="Frankkennard Gonzales">
+                                <p class="name">Frankkennard Gonzales</p>
+                                <p class="role">Project Manager</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/EranIMG.jpg') }}" alt="Marc Eran Cahutay">
+                                <p class="name">Marc Eran Cahutay</p>
+                                <p class="role">Designer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/ralphIMG.jpg') }}" alt="Ralph Cupat">
+                                <p class="name">Ralph Cupat</p>
+                                <p class="role">Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/MarkronIMG.jpg') }}" alt="Markron Constantino">
+                                <p class="name">Markron Constantino</p>
+                                <p class="role">Programmer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/joebertIMG.jpg') }}" alt="Joebert Varona">
+                                <p class="name">Joebert Varona</p>
+                                <p class="role">System Analyst</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/AndrewIMG.jpg') }}" alt="Andrew Paguio">
+                                <p class="name">Andrew Paguio</p>
+                                <p class="role">Data Analyst</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-member">
+                                <img src="{{ url_for('static', filename='global/images/AbegailIMG.jpg') }}" alt="Abegail Calagos">
+                                <p class="name">Abegail Calagos</p>
+                                <p class="role">Designer</p>
+                                <div class="social-links">
+                                    <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                                    <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                                    <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                                    <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- ================== INDEX FOOTER SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <footer class="index-footer">
+                    <div class="footer-section-1">
+                        <div class="footer-brand">
+                            <h5>NwSSU Gym Tracker</h5>
+                            <p>
+                                A comprehensive gym tracking system designed for students and faculty of Northwest Samar State University. 
+                                Monitor workouts, track progress, and achieve your fitness goals.
+                            </p>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section-2">
+                        <h5>Gym Categories</h5>
+                        <ul>
+                            <li>Workout Tracking</li>
+                            <li>Progress Analytics</li>
+                            <li>Personal Goal Setting</li>
+                            <li>Membership Plans</li>
+                            <li>Exclusive Student Access</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section-3">
+                        <h5>Contact Us</h5>
+                        <p><strong>Phone:</strong> +63 912 345 6789</p>
+                        <p><strong>Location:</strong> Northwest Samar State University Main Campus, Calbayog City, Samar</p>
+                        <p class="copyright">© 2025 Developed by NwSSU DevCore.</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

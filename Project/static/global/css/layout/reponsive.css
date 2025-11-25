@@ -1,0 +1,24 @@
+/* 
+    RESPONSIVE STYLING FOR "members.html" MODAL
+ */
+@media (max-width: 480px) {
+    .member-modal-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    .member-modal-header h2 {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .form-subtext {
+        font-size: 0.8rem;
+        text-align: center;
+        margin-bottom: 0.8rem;
+    }
+    /* Member modal button responsive rules moved to components/members.css to avoid duplication. */
+}
+

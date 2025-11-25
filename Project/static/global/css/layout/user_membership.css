@@ -1,0 +1,491 @@
+/* Membership Card */
+.membership-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.card-title {
+    color: var(--accent-primary);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+}
+
+/* Membership Header */
+.membership-header {
+    margin-bottom: 2rem;
+}
+
+.member-id {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.member-id strong {
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.status-active {
+    background: rgba(80, 255, 80, 0.1);
+    color: #50ff50;
+    border: 1px solid rgba(80, 255, 80, 0.3);
+}
+
+.status-expired {
+    background: rgba(255, 80, 80, 0.1);
+    color: #ff5050;
+    border: 1px solid rgba(255, 80, 80, 0.3);
+}
+
+.status-inactive {
+    background: rgba(150, 150, 150, 0.1);
+    color: #999;
+    border: 1px solid rgba(150, 150, 150, 0.3);
+}
+
+.status-badge i {
+    font-size: 0.6rem;
+}
+
+/* Membership Grid */
+.membership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.membership-item {
+    background: rgba(95, 208, 224, 0.05);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.membership-item:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.membership-item > i {
+    font-size: 2rem;
+    color: var(--accent-primary);
+}
+
+.membership-item label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.membership-item .value {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Alerts */
+.alert {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.alert i {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.alert-success {
+    border: 1px solid rgba(80, 255, 80, 0.3);
+}
+
+.alert-success i {
+    color: #50ff50;
+}
+
+.alert-success strong {
+    color: #50ff50;
+}
+
+.alert-warning {
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.alert-warning i {
+    color: #ffd700;
+}
+
+.alert-warning strong {
+    color: #ffd700;
+}
+
+.alert-danger {
+    border: 1px solid rgba(255, 80, 80, 0.3);
+}
+
+.alert-danger i {
+    color: #ff5050;
+}
+
+.alert-danger strong {
+    color: #ff5050;
+}
+
+.alert div {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Help Card */
+.help-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.help-title {
+    color: var(--accent-primary);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.help-text {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.help-note {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 215, 0, 0.08);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.help-note i {
+    color: #ffd700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .membership-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-title,
+    .help-title {
+        font-size: 1.5rem;
+    }
+
+    .membership-card,
+    .help-card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* =============================
+    RENEWAL REQUEST MODAL
+============================= */
+
+/* Background Overlay */
+.renew-modal {
+    display: none;  /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    /* This makes JS display:flex work */
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Box */
+.renew-modal-content {
+    background: linear-gradient(180deg, #0a121b, #0d1825);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    width: 95%;
+    max-width: 480px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    animation: fadeInScale 0.3s ease forwards;
+}
+
+/* Modal Title */
+.renew-modal-content h2 {
+    color: var(--accent-primary);
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+/* Modal Description */
+.renew-modal-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.6;
+}
+
+/* Form Label inside Renewal Modal */
+.renew-modal-content .form-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #00ffe0; /* accent-primary-like color */
+    margin-bottom: 0.75rem;
+    text-align: left;
+    border-radius: 12px;
+}
+
+/* Select Dropdown inside Renewal Modal */
+.renew-modal-content .form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(180deg, #131d29, #0f1723);
+    color: #fff;
+    margin-bottom: 2rem;
+    transition: border 0.25s ease, box-shadow 0.25s ease;
+    appearance: none; /* remove default arrow */
+    cursor: pointer;
+    position: relative;
+}
+
+/* Hover & Focus Effect */
+.renew-modal-content .form-select:hover,
+.renew-modal-content .form-select:focus {
+    border-color: #00ffe0;
+    box-shadow: 0 0 10px rgba(0, 255, 234, 0.3);
+    outline: none;
+    border-radius: 12px;
+}
+
+/* Custom Arrow */
+.renew-modal-content .form-select::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    background: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center center;
+    background-size: contain;
+}
+
+/* Option Styles (optional, for better contrast) */
+.renew-modal-content .form-select option {
+    background: #131d29;
+    color: #fff;
+    border-radius: 12px;
+}
+
+
+/* Buttons */
+.confirm-renew, .cancel-renew {
+    width: 100%;
+    padding: 0.95rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 1rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Confirm Button (Green) */
+.confirm-renew {
+    background: #50ff50;
+    color: #000;
+    border: 1px solid rgba(80, 255, 80, 0.4);
+}
+
+.confirm-renew:hover {
+    background: #40e040;
+    transform: translateY(-1px);
+}
+
+/* Cancel Button (Gray) */
+.cancel-renew {
+    background: #f0f0f0;
+    color: #555;
+    border: 1px solid #ccc;
+}
+
+.cancel-renew:hover {
+    background: #e0e0e0;
+    transform: translateY(-1px);
+}
+
+/* Renew Button in Panel */
+.renew-btn {
+    background: var(--accent-primary);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    transition: all 0.25s ease;
+}
+
+.renew-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Fade Animation */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================
+   Attendance Section
+========================= */
+.attendance-section {
+    margin-bottom: 2rem;
+}
+
+.attendance-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px var(--shadow-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.attendance-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+}
+
+.attendance-card .card-title {
+    color: var(--accent-primary);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.attendance-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.time-in-btn, .time-out-btn {
+    flex: 1 1 120px;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.time-in-btn {
+    background: rgba(80, 255, 80, 0.15);
+    color: #50ff50;
+    border: 1px solid rgba(80, 255, 80, 0.4);
+}
+
+.time-in-btn:hover {
+    background: #50ff50;
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.time-out-btn {
+    background: rgba(255, 80, 80, 0.15);
+    color: #ff5050;
+    border: 1px solid rgba(255, 80, 80, 0.4);
+}
+
+.time-out-btn:hover {
+    background: #ff5050;
+    color: #000;
+    transform: translateY(-1px);
+}
+
+.attendance-status {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}

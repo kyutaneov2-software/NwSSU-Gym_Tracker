@@ -1,0 +1,62 @@
+/* ELEMENTS.CSS - Generic element & site-wide element rules
+    Purpose: central place for base element styling used across pages (headings, logos, paragraph/lead text).
+    Where to add new styles: put page-wide element styles here (h1, h2, p, .logo).  Keep them generic.
+    Component-specific overrides should live in `static/css/components/*.css` and
+    visual variants (buttons) should be in `static/css/buttons.css`.
+*/
+
+h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    position: relative;
+}
+
+/* Decorative underline for headings (optional)
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+}
+*/
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.4rem;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Logo (site-wide) */
+.logo {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+}
+

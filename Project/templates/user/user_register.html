@@ -1,0 +1,140 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Register - NwSSU Gym Tracker{% endblock %}
+
+{% block navbar %}
+<!-- No navbar for auth pages -->
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+    
+
+        <div class="auth-card" style="max-width: 700px;">
+            
+            <div class="auth-header">
+                <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="NwSSU Logo" class="auth-logo">
+                <h1>Create Account</h1>
+                <p class="auth-subtitle">Join NwSSU Gym Tracker</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('userAuth.user_register') }}" class="auth-form">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first_name">First Name <span class="required">*</span></label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name <span class="required">*</span></label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="age">Age <span class="required">*</span></label>
+                            <input type="number" id="age" name="age" required min="1" max="120">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender <span class="required">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Account Information</h3>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password">Password <span class="required">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" name="password" required minlength="6" placeholder="Min 6 characters">
+                                <i class="fa-solid fa-eye toggle-password" id="togglePasswordMain" onclick="togglePassword('password', this)"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="confirm_password" name="confirm_password" required minlength="6">
+                                <i class="fa-solid fa-eye toggle-password" id="togglePasswordConfirm" onclick="togglePassword('confirm_password', this)"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership Details -->
+                <div class="form-section">
+                    <h3 class="section-title">Membership Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="member_type">Member Type <span class="required">*</span></label>
+                            <select id="member_type" name="member_type" required>
+                                <option value="">Select Type</option>
+                                <option value="Student">Student</option>
+                                <option value="Faculty">Faculty</option>
+                                <option value="Outsider">Outsider</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="student_number">Student Number</label>
+                            <input type="text" id="student_number" name="student_number" placeholder="Required for students">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gym_plan">Gym Plan <span class="required">*</span></label>
+                        <select id="gym_plan" name="gym_plan" required>
+                            <option value="">Select Plan</option>
+                            <option value="Daily">Daily Plan</option>
+                            <option value="Monthly">Monthly Plan</option>
+                            <option value="Annual" disabled>Annual Plan (Coming Soon)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h3 class="section-title">Contact Information (Optional)</h3>
+                    <div class="form-group">
+                        <label for="contact_number">Contact Number</label>
+                        <input type="text" id="contact_number" name="contact_number" placeholder="e.g. 09123456789">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="Your address">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 0.8rem;">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="{{ url_for('main.index') }}" class="btn-auth-back">← Back to Home</a>
+            </div>
+            <p class="dev-credit">Developed by <strong>NwSSU DevCore</strong></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='global/js/user_register.js') }}"></script>
+{% endblock %}

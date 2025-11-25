@@ -1,0 +1,892 @@
+/* TABLE.CSS - Table component styles
+    Purpose: Data tables with glass-morphic design that matches site theme.
+    Where to add: Place table-specific styles here, using site CSS variables.
+*/
+
+/* === Table Container === */
+.table-container {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 20px;
+    max-height: 420px; /* default max height */
+    background: linear-gradient(145deg, rgba(0, 30, 40, 0.7), rgba(0, 0, 0, 0.6));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    overflow-x: auto;
+    transition: all 0.3s ease;
+}
+
+
+/* === Title === */
+.table-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #00ffe0;
+    text-shadow: 0 0 10px var(--shadow-color);
+    margin-bottom: 1.6rem;
+    letter-spacing: 1px;
+}
+
+/* Optional - subtle shadow fade for overflow indicator */
+.table-container::after {
+    content: "";
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    pointer-events: none;
+}
+
+/* === Table === */
+.registered-member-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #222; /* Ensures data is visible */
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+/* Table Header */
+.registered-member-table thead {
+    background: linear-gradient(
+        90deg,
+        rgba(128, 0, 255, 0.18),   /* Purple */
+        rgba(0, 102, 255, 0.18),   /* Blue */
+        rgba(255, 59, 87, 0.18)    /* Red */
+    );
+    position: relative;
+    border-radius: 14px;
+}
+
+.registered-member-table thead::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8000ff, #0066ff, #ff3b57);
+    opacity: 0.3;
+}
+
+.registered-member-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #8000ff;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border: none;
+    position: relative;
+}
+
+.registered-member-table thead th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: #8000ff;
+    opacity: 0.2;
+}
+
+/* Table Body */
+.registered-member-table tbody tr {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+
+.registered-member-table tbody td {
+    padding: 16px;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(128, 0, 255, 0.10);
+    position: relative;
+}
+
+
+/* Hover effect on cells */
+.registered-member-table tbody td::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #8000ff, #0066ff, #ff3b57);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+
+/* === Status Badges === */
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    transition: all 0.3s ease;
+}
+
+.status::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.4; transform: scale(0.95); }
+}
+
+.status.active {
+    background: rgba(128, 0, 255, 0.13);
+    color: #8000ff;
+    border: 1px solid #8000ff;
+}
+
+.status.active::before {
+    background-color: #8000ff;
+}
+
+.status.inactive {
+    background: rgba(255, 59, 87, 0.13);
+    color: #ff3b57;
+    border: 1px solid #ff3b57;
+}
+
+.status.inactive::before {
+    background-color: #ff3b57;
+}
+
+/* === Table Actions === */
+.table-actions {
+    display: flex;
+    margin: 10px 10px 0 0;
+    text-align: center;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+/* Base button style using site's design system */
+.table-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.table-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.3s ease;
+}
+
+/* Button Variants using accent colors */
+.table-btn.view {
+    background: rgba(128, 0, 255, 0.13);
+    color: #8000ff;
+    border-color: #8000ff;
+}
+
+.table-btn.edit {
+    background: rgba(0, 102, 255, 0.13);
+    color: #0066ff;
+    border-color: #0066ff;
+}
+
+.table-btn.delete {
+    background: rgba(255, 59, 87, 0.13);
+    color: #ff3b57;
+    border-color: #ff3b57;
+}
+
+/* Common hover effect for all buttons */
+.table-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.table-btn:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 1rem;
+        border-radius: 15px;
+        min-width: 100%;
+    }
+
+    .table-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .registered-member-table {
+        border: 0;
+        min-width: 100%;
+    }
+
+    .registered-member-table thead {
+        color: var(--text-secondary);
+    }
+
+    .registered-member-table tbody td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(128, 0, 255, 0.10);
+    }
+
+    .registered-member-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 10px;
+    }
+
+    .table-actions {
+        gap: 6px;
+    }
+    
+    .registered-member-table tbody td.table-actions,
+    .registered-member-table tbody td .table-actions {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+
+    .table-btn {
+        padding: 5px 10px;
+        margin: 5px;
+        font-size: 0.7rem;
+        border-radius: 15px;
+    }
+
+    .status {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        min-width: 70px;
+    }
+
+    .status::before {
+        width: 4px;
+        height: 4px;
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+  /* Small devices — show up to 5 rows */
+    .table-scroll {
+        max-height: calc(5 * 130px); /* each mobile “card” row ~130px tall */
+    }
+    }
+
+    @media (min-width: 769px) {
+    /* Large devices — show up to 10 rows */
+    .table-scroll {
+        max-height: calc(10 * 45px); /* each desktop row ~45px tall */
+    }
+    }
+
+/* ==============================
+    Card-style rows for tablets & small screens
+    - Converts table rows into stacked cards for medium and small viewports.
+    - Add `data-label="Header name"` to each <td> so labels appear on cards.
+    - If data-label is missing the layout still stacks but no label will be shown.
+    - Breakpoint: 1024px (adjustable).
+==============================*/
+@media (max-width: 1024px) {
+    .registered-member-table,
+    .registered-member-table thead,
+    .registered-member-table tbody,
+    .registered-member-table tr,
+    .registered-member-table th,
+    .registered-member-table td {
+        display: block;
+        width: 100%;
+    }
+
+    /* hide the header row; per-cell labels surface via data-label */
+    .registered-member-table thead { display: none; }
+
+    /* card-like rows that mirror .feature visuals */
+    .registered-member-table tbody tr {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 10px 30px var(--shadow-color);
+        transform: none;
+    }
+
+    .registered-member-table tbody td {
+        padding: 10px 12px;
+        border: none;
+        color: var(--text-primary);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        white-space: normal;
+        word-break: break-word;
+        font-size: 0.95rem;
+    }
+
+    /* Use header text from data-label attribute for each cell */
+    .registered-member-table tbody td::before {
+        content: attr(data-label);
+        min-width: 100px;
+        max-width: 38%;
+        color: var(--text-secondary);
+        font-weight: 700;
+        font-size: 0.82rem;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .registered-member-table tbody td:not([data-label])::before,
+    .registered-member-table tbody td[data-label=""]::before {
+        display: none;
+    }
+
+    /* Actions and badges become full-width blocks inside the card */
+    .registered-member-table tbody td.table-actions,
+    .registered-member-table tbody td .table-actions {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .table-actions { justify-content: flex-start; gap: 10px; }
+    .table-btn { padding: 8px 14px; }
+
+    /* keep overflow fallback for extremely wide contents */
+    .table-container { overflow-x: auto; }
+    }
+}
+
+/* ================================
+    Table Filter Bar (Enhanced Futuristic)
+   ================================ */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem 1.5rem;
+    background: rgba(0, 255, 234, 0.06);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.filter-bar:hover {
+    box-shadow: 0 0 24px rgba(0, 255, 255, 0.15);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.filter-group.title h3 {
+    color: #00ffe0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.filter-group label {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.04em;
+}
+
+.filter-input,
+.filter-select {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 255, 255, 0.25);
+    color: #00ffe0;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: #00ffe0;
+    box-shadow: 0 0 10px #00ffe0;
+}
+
+.filter-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.active-status {
+    color: #00ffe0;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 234, 0.5);
+}
+
+.inactive-status {
+    color: #ff3b5f;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 59, 95, 0.4);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* === Pagination === */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.page-btn,
+.page-number {
+    background: rgba(0, 102, 255, 0.15);
+    border: 1px solid rgba(0, 102, 255, 0.4);
+    color: #00ffe0;
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover,
+.page-number:hover {
+    background: rgba(0, 102, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.page-number.active {
+    background: #00ffe0;
+    color: #000;
+    border-color: #00ffe0;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ===============================
+    Animated Pagination Transitions
+=============================== */
+
+#memberTableBody.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#memberTableBody.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Smooth hover glow for active page */
+.page-number.active {
+    background: linear-gradient(90deg, rgba(0, 255, 234, 0.20), rgba(128, 0, 255, 0.22));
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+
+/* ==============================
+   Renewal Requests Table Styles
+   ============================== */
+
+/* === Table === */
+.renewal-member-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #222;
+    font-size: 0.9rem;
+    background: transparent;
+}
+
+/* Table Header */
+.renewal-member-table thead {
+    background: linear-gradient(
+        90deg,
+        rgba(128, 0, 255, 0.18),
+        rgba(0, 102, 255, 0.18),
+        rgba(255, 59, 87, 0.18)
+    );
+    position: relative;
+    border-radius: 14px;
+}
+
+.renewal-member-table thead::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8000ff, #0066ff, #ff3b57);
+    opacity: 0.3;
+}
+
+.renewal-member-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #8000ff;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border: none;
+    position: relative;
+}
+
+.renewal-member-table thead th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: #8000ff;
+    opacity: 0.2;
+}
+
+/* Table Body */
+.renewal-member-table tbody tr {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.renewal-member-table tbody td {
+    padding: 16px;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(128, 0, 255, 0.10);
+    position: relative;
+}
+
+/* Hover effect on cells */
+.renewal-member-table tbody td::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, #8000ff, #0066ff, #ff3b57);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* === Status Badges === */
+.renewal-member-table .status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    transition: all 0.3s ease;
+}
+
+.renewal-member-table .status::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+}
+
+.renewal-member-table .status.active {
+    background: rgba(128, 0, 255, 0.13);
+    color: #8000ff;
+    border: 1px solid #8000ff;
+}
+
+.renewal-member-table .status.active::before {
+    background-color: #8000ff;
+}
+
+.renewal-member-table .status.inactive {
+    background: rgba(255, 59, 87, 0.13);
+    color: #ff3b57;
+    border: 1px solid #ff3b57;
+}
+
+.renewal-member-table .status.inactive::before {
+    background-color: #ff3b57;
+}
+
+/* === Table Actions === */
+.renewal-member-table .table-actions {
+    display: flex;
+    margin: 10px 10px 0 0;
+    text-align: center;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.renewal-member-table .table-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.renewal-member-table .table-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.3s ease;
+}
+
+.renewal-member-table .table-btn.approve {
+    background: rgba(144, 238, 144, 0.3); /* light green with transparency */
+    color: #32CD32; /* lime green text */
+    border-color: #32CD32; /* lime green border */
+}
+
+.renewal-member-table .table-btn.deny {
+    background: rgba(0, 102, 255, 0.13);
+    color: #0066ff;
+    border-color: #0066ff;
+}
+
+.renewal-member-table .table-btn.delete {
+    background: rgba(255, 59, 87, 0.13);
+    color: #ff3b57;
+    border-color: #ff3b57;
+}
+
+.renewal-member-table .table-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.renewal-member-table .table-btn:hover::before {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .renewal-member-table {
+        border: 0;
+        min-width: 100%;
+    }
+
+    .renewal-member-table tbody td {
+        padding: 12px;
+        border-bottom: 1px solid rgba(128, 0, 255, 0.10);
+    }
+
+    .renewal-member-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 10px;
+    }
+
+    .renewal-member-table tbody td.table-actions,
+    .renewal-member-table tbody td .table-actions {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .renewal-member-table .table-btn {
+        padding: 5px 10px;
+        margin: 5px;
+        font-size: 0.7rem;
+        border-radius: 15px;
+    }
+
+    .renewal-member-table .status {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        min-width: 70px;
+    }
+
+    .renewal-member-table .status::before {
+        width: 4px;
+        height: 4px;
+        margin-right: 4px;
+    }
+}
+
+.approved-status {
+    color: #00ffe0;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 234, 0.5);
+}
+
+.denied-status {
+    color: #ff3b5f;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 59, 95, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .renewal-member-table,
+    .renewal-member-table thead,
+    .renewal-member-table tbody,
+    .renewal-member-table tr,
+    .renewal-member-table th,
+    .renewal-member-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .renewal-member-table thead { display: none; }
+
+    .renewal-member-table tbody tr {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 10px 30px var(--shadow-color);
+        transform: none;
+    }
+
+    .renewal-member-table tbody td {
+        padding: 10px 12px;
+        border: none;
+        color: var(--text-primary);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        white-space: normal;
+        word-break: break-word;
+        font-size: 0.95rem;
+    }
+
+    .renewal-member-table tbody td::before {
+        content: attr(data-label);
+        min-width: 100px;
+        max-width: 38%;
+        color: var(--text-secondary);
+        font-weight: 700;
+        font-size: 0.82rem;
+        display: inline-block;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .renewal-member-table tbody td:not([data-label])::before,
+    .renewal-member-table tbody td[data-label=""]::before {
+        display: none;
+    }
+
+    .renewal-member-table tbody td.table-actions,
+    .renewal-member-table tbody td .table-actions {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .renewal-member-table .table-actions { justify-content: flex-start; gap: 10px; }
+    .renewal-member-table .table-btn { padding: 8px 14px; }
+}
+
+/* Smooth Fade Animations */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.renewal-member-table tbody tr {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.renewal-member-table tbody tr.hidden {
+    opacity: 0;
+    transform: translateY(5px);
+}
+

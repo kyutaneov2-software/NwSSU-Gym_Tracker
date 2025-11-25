@@ -1,0 +1,168 @@
+{% extends "user/user_base.html" %}
+
+{% block title %}Membership - NwSSU Gym Tracker{% endblock %}
+
+{% block content %}
+    <body class="user-page">
+        <div class="page">
+            <div class="hero">
+
+                <!-- Header Card -->
+                <div class="m-header-card">
+                    <p class="subtitle"><strong>Membership Dashboard</strong></p>
+                    <p class="description">
+                        Efficiently access and manage <span>membership</span>, monitor, 
+                        and track <span>activity logs</span> within the <strong>NwSSU Gym Tracker</strong>. 
+                        Streamline operations and ensure a seamless experience for all members.
+                    </p>
+                </div>
+
+                <!-- Status Alert -->
+                {% if member.status == 'Expired' %}
+                <div class="alert alert-danger">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>Your membership has expired!</strong><br>
+                        Please contact the gym admin to renew your membership and continue using our facilities.
+                    </div>
+                </div>
+                {% elif days_remaining <= 7 %}
+                <div class="alert alert-warning">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Your membership is expiring soon!</strong><br>
+                        Only {{ days_remaining }} days remaining. Contact the gym admin to extend your membership.
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-success">
+                    <i class="fas fa-circle-check"></i>
+                    <div>
+                        <strong>Your membership is active!</strong><br>
+                        You have {{ days_remaining }} days remaining. Enjoy your workouts!
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Membership Overview -->
+                <div class="membership-card">
+                    <h1 class="card-title">
+                        <i class="fas fa-id-card-clip"></i> My Membership
+                    </h1>
+
+                    <div class="membership-header">
+                        <div>
+                            <p class="member-id">Member ID: <strong>{{ member.unique_code }}</strong></p>
+                            <span class="status-badge status-{{ member.status.lower() }}">
+                                <i class="fas fa-circle"></i> {{ member.status }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="membership-grid">
+                        <div class="membership-item">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <label>Member Type</label>
+                                <div class="value">{{ member.member_type }}</div>
+                            </div>
+                        </div>
+
+                        <div class="membership-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div>
+                                <label>Gym Plan</label>
+                                <div class="value">{{ member.gym_plan }} Plan</div>
+                            </div>
+                        </div>
+
+                        <div class="membership-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <div>
+                                <label>Start Date</label>
+                                <div class="value">{{ member.start_date.strftime('%B %d, %Y') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="membership-item">
+                            <i class="fas fa-calendar-xmark"></i>
+                            <div>
+                                <label>End Date</label>
+                                <div class="value">{{ member.end_date.strftime('%B %d, %Y') }}</div>
+                            </div>
+                        </div>
+
+                        <div class="membership-item">
+                            <i class="fas fa-hourglass-half"></i>
+                            <div>
+                                <label>Days Remaining</label>
+                                <div class="value">{{ days_remaining }} days</div>
+                            </div>
+                        </div>
+
+                        <div class="membership-item">
+                            <i class="fas fa-peso-sign"></i>
+                            <div>
+                                <label>Price Paid</label>
+                                <div class="value">₱{{ "%.2f"|format(member.price_paid or 0) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Renewal Button -->
+                    <div class="renew-container">
+                        {% if not pending_request %}
+                        <button class="renew-btn" onclick="openRenewModal()">
+                            <i class="fas fa-rotate-right"></i> Request Renewal?
+                        </button>
+                            {% else %}
+                        <button class="renew-btn" disabled>
+                            <i class="fas fa-clock"></i> Renewal In Pending
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="help-card">
+                    <h2 class="help-title">
+                        <i class="fas fa-circle-question"></i> Need Help?
+                    </h2>
+                    <p class="help-text">
+                        To modify your membership, please contact the gym administrator.
+                    </p>
+                    <p class="help-note">
+                        <i class="fas fa-info-circle"></i>
+                        Membership renewals and plan changes are currently managed by admin only. Click the renewal button above to send a request.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Renewal Request Modal -->
+        <div id="renewModal" class="renew-modal">
+            <div class="renew-modal-content">
+                <h2>Confirm Renewal Request</h2>
+                <p>
+                    Are you sure you want to submit a renewal request for your membership?
+                    The gym admin will review and update your membership status.
+                </p>
+
+                <form action="{{ url_for('userRenewals.user_request_renewal') }}" method="POST">
+                    <label for="requested_plan" class="form-label">Select Plan for Renewal</label>
+                    <select name="requested_plan" id="requested_plan" class="form-select" required>
+                        <option value="Daily" {% if member.gym_plan == 'Daily' %}selected{% endif %}>Daily</option>
+                        <option value="Monthly" {% if member.gym_plan == 'Monthly' %}selected{% endif %}>Monthly</option>
+                    </select>
+
+                    <button type="submit" class="confirm-renew">Submit Renewal Request</button>
+                    <button type="button" class="cancel-renew" onclick="document.getElementById('renewModal').style.display='none'">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </body>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='global/js/user_membership.js')}}"></script>
+{% endblock %}

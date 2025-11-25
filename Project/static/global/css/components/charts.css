@@ -1,0 +1,192 @@
+/* ================================
+    Neon Membership Charts Upgrade
+   ================================ */
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.chart-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(0, 30, 40, 0.7), rgba(0, 0, 0, 0.6));
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 15px;
+}
+
+.chart-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.3);
+}
+
+.chart-title {
+    text-align: center;
+    color: #00ffe0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+
+.member-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.chart-card {
+    background: rgba(0, 255, 234, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
+}
+
+.chart-card:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.chart-title {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #00ffe0;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+canvas {
+    width: 100% !important;
+    height: 330px !important;
+}
+/* ================================
+    Neon Membership Charts (Responsive)
+   ================================ */
+
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 0.1rem 0;
+}
+
+/* Chart Card */
+.chart-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(0, 30, 40, 0.7), rgba(0, 0, 0, 0.6));
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+}
+
+.chart-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(0, 255, 255, 0.3);
+}
+
+/* Title */
+.chart-title {
+    text-align: center;
+    color: #00ffe0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+/* Chart Canvas */
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Section wrapper for charts */
+.member-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* ================================
+    Responsive Tweaks
+   ================================ */
+
+/* Tablet */
+@media (max-width: 1080px) {
+    .charts-section {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    .chart-card {
+        padding: 1.2rem;
+    }
+    canvas {
+        height: 320px !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .charts-section {
+        grid-template-columns: 1fr;
+        padding: 0.5rem;
+    }
+    .chart-card {
+        margin: 0.5rem 0;
+        padding: 1rem;
+        border-radius: 14px;
+    }
+    .chart-title {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    canvas {
+        height: 220px !important;
+        padding: 5px;
+    }
+}
+
+/* Small mobile (portrait) */
+@media (max-width: 400px) {
+    .chart-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
+    }
+    .chart-card {
+        padding: 0.8rem;
+    }
+    canvas {
+        height: 200px !important;
+    }
+}

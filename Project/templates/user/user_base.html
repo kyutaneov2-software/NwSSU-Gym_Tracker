@@ -1,0 +1,55 @@
+<!--FILE NAME: user_base.html-->
+{% extends "admin/base.html" %}
+
+{% block navbar %}
+<!-- User Navigation Bar (Horizontal, not hamburger) -->
+    <input type="checkbox" id="burgerSidebar" class="burger-sidebar">
+
+        <label for="burgerSidebar" class="toggle-sidebar">
+            <span class="top_line common"></span>
+            <span class="middle_line common"></span>
+            <span class="bottom_line common"></span>
+        </label>
+
+        <div class="side-bar">
+            <!-- Logo -->
+            <div class="sidebar-logo">
+                <img src="{{ url_for('static', filename='global/images/icon-removebg.png') }}" alt="NwSSU Logo" class="Gym-logo">
+                <div class="side-title">NwSSU Gym</div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="{{ url_for('main.index') }}" class="{% if request.endpoint == 'main.index' %}active{% endif %}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('userRoutes.dashboard') }}" class="{% if request.endpoint == 'userRoutes.dashboard' %}active{% endif %}">
+                            <i class="fas fa-gauge"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('userRoutes.membership') }}" class="{% if request.endpoint == 'userRoutes.membership' %}active{% endif %}">
+                            <i class="fas fa-id-card"></i> Membership
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('userRoutes.profile') }}" class="{% if request.endpoint == 'userRoutes.profile' %}active{% endif %}">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Logout -->
+            <div class="logout-sidelink">
+                <a href="{{ url_for('userAuth.user_logout') }}">
+                    <i class="fas fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+
+{% endblock %}

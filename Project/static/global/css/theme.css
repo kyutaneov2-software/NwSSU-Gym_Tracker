@@ -1,0 +1,62 @@
+/* THEME.CSS - Light/Dark Mode & Theme variables
+    Purpose: Define theme variables and theme-specific helpers (light-mode overrides, theme-toggle visuals).
+    Where to add new styles: Add theme-level overrides or new theme classes here. Keep variables in base/base.css or move to variables.css if you prefer.
+*/
+
+/* Light mode overrides */
+body.light-mode {
+    --bg-primary: #f5f5f5;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #666666;
+    --accent-primary: #0099ff;
+    --accent-secondary: #0066cc;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(0, 153, 255, 0.3);
+    --shadow-color: rgba(0, 153, 255, 0.2);
+}
+
+body.light-mode .bg-pattern {
+    opacity: 0.2;
+}
+
+/* Floating Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    z-index: 11000;
+    color: var(--accent-primary);
+}
+
+.theme-toggle:hover {
+    background: var(--accent-primary);
+    color: #000;
+    transform: translateY(-2px) scale(1.05);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+.theme-toggle i.rotate {
+    transform: rotate(360deg);
+}
+
+.theme-toggle span {
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}

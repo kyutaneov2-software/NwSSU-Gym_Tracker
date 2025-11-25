@@ -1,0 +1,442 @@
+{% extends "admin/base.html" %}
+
+{% block title %}NwSSU Gym Tracker - Home{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+
+        <!-- ================== INDEX HEADER SECTION ================== -->
+        <div class="Header">
+            <div class="logo">NwSSU</div>
+            <h1 class="header-title">Gym Tracker</h1>
+            <p class="subtitle"><span class="text"></span></p>
+            <p class="description">
+                Monitor your workouts, track your progress, and achieve your fitness goals with 
+                <span class="highlight">NwSSU's</span> comprehensive gym tracking system. 
+                Built for students & faculty, by students.
+            </p>
+            <div class="cta-container">
+                <a href="{{ url_for('userAuth.user_register') }}" class="cta-btn primary">Get Started</a>
+                <a href="{{ url_for('userAuth.user_login') }}" class="cta-btn secondary">Member Portal</a>
+                <a href="{{ url_for('main.admin') }}" class="cta-btn admin">Admin Portal</a>
+            </div>
+        </div>
+
+        <!-- ================== IMPORTANT NOTE | ANNOUNCEMENT SECTION ================== -->
+        <div class="features">
+            <div class="feature-announcement">
+                <div class="announcement-note">
+                    <p id="announcementText">Light mode is still in BETA!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== GYM SHORT SUMMARY INTRODCUTION SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="gym-carousel-section">
+                    <h2 class="gym-carousel-title">Why Choose Our Gym Tracker?</h2>
+
+                    <div class="gym-carousel-wrapper">
+                        <div class="gym-carousel">
+                            <!-- Original cards -->
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-dumbbell"></i></div>
+                                <h3 class="gym-feature-heading">Set Goals</h3>
+                                <p class="gym-feature-desc">Personalize fitness goals and track your achievements.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-tint"></i></div>
+                                <h3 class="gym-feature-heading">Hydration Tracker</h3>
+                                <p class="gym-feature-desc">Monitor your daily water intake easily.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-fire"></i></div>
+                                <h3 class="gym-feature-heading">Calories Burned</h3>
+                                <p class="gym-feature-desc">See your progress and calories burned in real time.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-heart"></i></div>
+                                <h3 class="gym-feature-heading">Workout History</h3>
+                                <p class="gym-feature-desc">Keep track of your past sessions with insights.</p>
+                            </div>
+
+
+                            <!-- Duplicate cards for seamless looping -->
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-dumbbell"></i></div>
+                                <h3 class="gym-feature-heading">Set Goals</h3>
+                                <p class="gym-feature-desc">Personalize fitness goals and track your achievements.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-tint"></i></div>
+                                <h3 class="gym-feature-heading">Hydration Tracker</h3>
+                                <p class="gym-feature-desc">Monitor your daily water intake easily.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-fire"></i></div>
+                                <h3 class="gym-feature-heading">Calories Burned</h3>
+                                <p class="gym-feature-desc">See your progress and calories burned in real time.</p>
+                            </div>
+                            <div class="gym-feature-card">
+                                <div class="gym-feature-icon"><i class="fas fa-heart"></i></div>
+                                <h3 class="gym-feature-heading">Workout History</h3>
+                                <p class="gym-feature-desc">Keep track of your past sessions with insights.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> 
+        
+        <!-- ================== GYM SUBSCRIPTIONS SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="subscription-section">
+                    <h2 class="section-title">Choose Your Plan</h2>
+                    <div class="subscription-grid">
+
+                        <!-- Daily Plan -->
+                        <div class="subscription-card" data-card="1">
+                            <div class="card-header">
+                                <img src="{{ url_for('static', filename='global//images/subscription_daily.png') }}" alt="Daily Plan" class="header-logo">
+                                <div class="header-info">
+                                    <h3>Daily Plan</h3>
+                                    <span class="badge">Try Today</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="plan-description">Try our gym for a day. Full access to all equipment and track your workouts easily.</p>
+
+                                <div class="plan-price-table">
+                                    <div class="price-row">
+                                        <span class="price-label">Student:</span>
+                                        <span class="price-value">₱40</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-label">Outsider:</span>
+                                        <span class="price-value">₱60</span>
+                                    </div>
+                                </div>
+
+                                <ul class="plan-benefits">
+                                    <li>Access all gym equipment</li>
+                                    <li>Track workouts efficiently</li>
+                                    <li>Set personal goals</li>
+                                </ul>
+
+                                <button class="select-btn btn-highlight"><a href="{{ url_for('userAuth.user_login') }}">Check Out</a></button>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Plan -->
+                        <div class="subscription-card popular" data-card="2">
+                            <div class="card-header">
+                                <img src="{{ url_for('static', filename='global/images/subscription_monthly.png') }}" alt="Monthly Plan" class="header-logo">
+                                <div class="header-info">
+                                    <h3>Monthly Plan</h3>
+                                    <span class="badge">Most Popular</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="plan-description">Unlimited monthly access. Track your progress and set fitness goals efficiently.</p>
+
+                                <div class="plan-price-table">
+                                    <div class="price-row">
+                                        <span class="price-label">Student:</span>
+                                        <span class="price-value">₱500</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-label">Outsider:</span>
+                                        <span class="price-value">₱800</span>
+                                    </div>
+                                </div>
+
+                                <ul class="plan-benefits">
+                                    <li>Unlimited gym access</li>
+                                    <li>Progress analytics</li>
+                                    <li>Set personal goals</li>
+                                </ul>
+
+                                <button class="select-btn btn-highlight"><a href="{{ url_for('userAuth.user_login') }}">Check Out</a></button>
+                            </div>
+                        </div>
+
+                        <!-- Annual Plan -->
+                        <div class="subscription-card" data-card="3">
+                            <div class="card-header">
+                                <img src="{{ url_for('static', filename='global/images/subscription_annually.png') }}" alt="Annual Plan" class="header-logo">
+                                <div class="header-info">
+                                    <h3>Annual Plan</h3>
+                                    <span class="badge">Best Value</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <p class="plan-description">Full-year access for dedicated fitness enthusiasts. Track progress, analyze performance, and achieve your goals.</p>
+
+                                <div class="plan-price-table">
+                                    <div class="price-row">
+                                        <span class="price-label">Student:</span>
+                                        <span class="price-value">coming soon</span>
+                                    </div>
+                                    <div class="price-row">
+                                        <span class="price-label">Outsider:</span>
+                                        <span class="price-value">coming soon</span>
+                                    </div>
+                                </div>
+
+                                <ul class="plan-benefits">
+                                    <li>Unlimited gym access all year</li>
+                                    <li>Advanced progress analytics</li>
+                                    <li>Personalized goal support</li>
+                                </ul>
+
+                                <button class="select-btn btn-highlight"><a href="{{ url_for('userAuth.user_login') }}">Coming Soon</a></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ================== HOW IT WORKS SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="how-it-works-section">
+                    <div class="how-header">
+                        <h2>How It Works</h2>
+                        <p>Follow these simple steps to get started with NwSSU Gym Tracker and reach your fitness goals efficiently.</p>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="how-slider">
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-person-plus-fill"></i></div>
+                            <h3>1. Sign Up</h3>
+                            <p>Create your account and select your membership plan.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-activity"></i></div>
+                            <h3>2. Track Workouts</h3>
+                            <p>Log your exercises, track sets and reps, and monitor progress.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-bar-chart-fill"></i></div>
+                            <h3>3. Analyze Progress</h3>
+                            <p>View detailed analytics and performance insights to stay on track.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-trophy-fill"></i></div>
+                            <h3>4. Achieve Goals</h3>
+                            <p>Reach milestones, stay consistent, and celebrate your success!</p>
+                        </div>
+
+                        <!-- Duplicate slides for infinite effect -->
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-person-plus-fill"></i></div>
+                            <h3>1. Sign Up</h3>
+                            <p>Create your account and select your membership plan.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-activity"></i></div>
+                            <h3>2. Track Workouts</h3>
+                            <p>Log your exercises, track sets and reps, and monitor progress.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-bar-chart-fill"></i></div>
+                            <h3>3. Analyze Progress</h3>
+                            <p>View detailed analytics and performance insights to stay on track.</p>
+                        </div>
+
+                        <div class="how-step">
+                            <div class="icon"><i class="bi bi-trophy-fill"></i></div>
+                            <h3>4. Achieve Goals</h3>
+                            <p>Reach milestones, stay consistent, and celebrate your success!</p>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- ================== ADMIN PREVIEW SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="admin-preview-section">
+                    <div class="admin-preview-section-content">
+                        <h2 class="admin-preview-section-title">Admin Dashboard Features</h2>
+
+                        <div class="admin-preview-section-grid">
+                        <div class="admin-preview-section-card">
+                            <i class="fas fa-users admin-preview-section-icon"></i>
+                            <div>
+                            <h3>User Management</h3>
+                            <p>Manage users efficiently, control permissions, and monitor activity in real-time.</p>
+                            </div>
+                        </div>
+
+                        <div class="admin-preview-section-card">
+                            <i class="fas fa-dumbbell admin-preview-section-icon"></i>
+                            <div>
+                            <h3>Workout Management</h3>
+                            <p>Create, schedule, and track workout plans for members and trainers seamlessly.</p>
+                            </div>
+                        </div>
+
+                        <div class="admin-preview-section-card">
+                            <i class="fas fa-credit-card admin-preview-section-icon"></i>
+                            <div>
+                            <h3>Subscriptions & Billings</h3>
+                            <p>Handle memberships, payment history, and renewals with automated billing features.</p>
+                            </div>
+                        </div>
+
+                        <div class="admin-preview-section-card">
+                            <i class="fas fa-chart-line admin-preview-section-icon"></i>
+                            <div>
+                            <h3>Reports & Analytics</h3>
+                            <p>Analyze gym performance with detailed charts, metrics, and data-driven insights.</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ========================== DOWNLOAD / ACCESS SECTION ========================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="download-section">
+                    <div class="download-container">
+                        <h2 class="download-title">Track Your Fitness Anytime, Anywhere</h2>
+                        <p class="download-text">
+                        Get started today with the Gym Tracker web app — and stay tuned for our upcoming
+                        mobile version for Android and iOS. Manage your progress, track your workouts, and
+                        stay motivated wherever you go!
+                        </p>
+
+                        <div class="download-buttons">
+                            <a href="#" class="download-btn web-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                Open Web App
+                            </a>
+
+                            <a href="#" class="download-btn mobile-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z"/>
+                                </svg>
+                                Coming Soon on Mobile
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ======================== FAQ SECTION ========================== -->
+        <div class="features">
+            <div class="feature">
+                <section class="faq-section">
+                    <div class="faq-container">
+                        <h2 class="faq-title">Frequently Asked Questions</h2>
+                        <p class="faq-subtext">
+                        Have questions about how the Gym Tracker works? We’ve got you covered.
+                        </p>
+
+                        <div class="faq-list">
+                        <div class="faq-item">
+                            <h3 class="faq-question">1. What is the Gym Tracker?</h3>
+                            <p class="faq-answer">
+                            Gym Tracker is a fitness tracking system that helps you monitor workouts,
+                            manage progress, and visualize your goals with analytics and dashboards.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3 class="faq-question">2. Can I use it on mobile devices?</h3>
+                            <p class="faq-answer">
+                            Currently, you can access the web version on any device browser.
+                            A mobile app version is in development and coming soon for Android and iOS.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3 class="faq-question">3. Do I need to create an account?</h3>
+                            <p class="faq-answer">
+                            For now, no sign-up is required for the demo. You can freely explore the
+                            features. Account registration will be added in the full release version.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3 class="faq-question">4. Is my progress data saved?</h3>
+                            <p class="faq-answer">
+                            Yes! All your progress is stored locally on your browser. When cloud sync is
+                            introduced, your data will also be backed up securely online.
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ================== INDEX FOOTER SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <footer class="index-footer">
+                    <div class="footer-section-1">
+                        <div class="footer-brand">
+                            <h5>NwSSU Gym Tracker</h5>
+                            <p>
+                                A comprehensive gym tracking system designed for students and faculty of Northwest Samar State University. 
+                                Monitor workouts, track progress, and achieve your fitness goals.
+                            </p>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/profile.php?id=100063952515824" target="_blank"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.tiktok.com/" target="_blank"><i class="bi bi-tiktok"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a href="mailto:example@gmail.com" target="_blank"><i class="bi bi-envelope-fill"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section-2">
+                        <h5>Gym Categories</h5>
+                        <ul>
+                            <li>Workout Tracking</li>
+                            <li>Progress Analytics</li>
+                            <li>Personal Goal Setting</li>
+                            <li>Membership Plans</li>
+                            <li>Exclusive Student Access</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section-3">
+                        <h5>Contact Us</h5>
+                        <p><strong>Phone:</strong> +63 912 345 6789</p>
+                        <p><strong>Location:</strong> Northwest Samar State University Main Campus, Calbayog City, Samar</p>
+                        <p class="copyright">© 2025 Developed by NwSSU DevCore.</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ url_for('static', filename='global/js/main.js') }}"></script>
+{% endblock %}
+

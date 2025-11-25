@@ -1,0 +1,250 @@
+/* ==================================
+    Base Sidebar Structure
+================================== */
+.side-bar {
+    background-color: var(--bg-secondary);
+    height: 100vh;
+    width: 170px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transform: translateX(-200px);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    border-right: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ==================================
+    Logo Styling
+================================== */
+.Gym-logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto 0.5rem auto;
+    filter: drop-shadow(0 0 5px var(--accent-secondary));
+    transition: transform 0.3s ease;
+}
+
+.Gym-logo:hover {
+    transform: scale(1.1);
+}
+
+/* ==================================
+    Sidebar Title
+================================== */
+.side-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: -30px;
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+/* ==================================
+    Navigation Menu
+================================== */
+.sidebar-menu {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    display: block;
+    padding: 10px 20px;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+}
+
+ul li a:active,
+ul li a:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateX(2.5px);
+}
+
+ul li a.active {
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    color: #000;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transform: translateX(2.5px);
+}
+
+ul li a:hover i {
+    filter: drop-shadow(0 0 6px var(--accent-primary));
+}
+
+ul li a i {
+    text-align: center;
+}
+
+/* ==================================
+    Logout Section
+================================== */
+.logout-sidelink {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    padding: 0.5rem 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logout-sidelink a {
+    display: block;
+    padding: 12px 20px;
+    text-align: left;
+    color: var(--text-secondary);
+    transition: 0.3s;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.logout-sidelink a:hover {
+    background: var(--accent-primary);
+    color: #fff;
+}
+
+/* ==================================
+    Burger Menu Toggle
+================================== */
+.burger-sidebar {
+    display: none;
+    visibility: hidden;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.toggle-sidebar {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 38px;
+    height: 34px;
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.toggle-sidebar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent-primary);
+}
+
+/* Burger Menu Lines */
+.toggle-sidebar .common {
+    position: absolute;
+    height: 3px;
+    width: 70%;
+    background-color: var(--accent-primary);
+    transition: all 0.4s ease;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px var(--accent-primary);
+    animation: burgerGlow 2.5s infinite ease-in-out;
+}
+
+.toggle-sidebar .top_line,
+.toggle-sidebar .middle_line,
+.toggle-sidebar .bottom_line {
+    left: 50%;
+}
+
+.toggle-sidebar .top_line { top: 30%; }
+.toggle-sidebar .middle_line { top: 50%; }
+.toggle-sidebar .bottom_line { top: 70%; }
+
+/* Burger Menu Animation */
+.burger-sidebar:checked ~ .toggle-sidebar .top_line {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.burger-sidebar:checked ~ .toggle-sidebar .middle_line {
+    opacity: 0;
+}
+
+.burger-sidebar:checked ~ .toggle-sidebar .bottom_line {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Sidebar Open State */
+.burger-sidebar:checked ~ .side-bar {
+    transform: translateX(0);
+    box-shadow: 0 0 20px var(--accent-primary);
+    animation: sideGlow 3s infinite ease-in-out;
+}
+
+/* ==================================
+    Animations
+================================== */
+@keyframes burgerGlow {
+    0%, 100% { box-shadow: 0 0 6px var(--accent-primary); }
+    50% { box-shadow: 0 0 15px var(--accent-secondary); }
+}
+
+@keyframes sideGlow {
+    0%, 100% { box-shadow: 0 0 10px var(--accent-primary); }
+    50% { box-shadow: 0 0 20px var(--accent-secondary); }
+}
+
+/* ==================================
+    Custom Scrollbar
+================================== */
+.sidebar-menu::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 10px;
+    box-shadow: 0 0 6px var(--accent-primary);
+    transition: all 0.3s ease;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent-secondary), var(--accent-primary));
+    box-shadow: 0 0 10px var(--accent-secondary);
+}
+
+.sidebar-menu::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Firefox Scrollbar Support */
+.sidebar-menu {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-primary) rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive Styles (≤ 720px) */
+@media screen and (max-width: 720px) {
+    .side-bar {
+        height: 100vh;
+    }
+}

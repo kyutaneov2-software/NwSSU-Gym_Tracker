@@ -1,0 +1,119 @@
+{% extends "user/user_base.html" %}
+
+{% block title %}Dashboard - NwSSU Gym Tracker{% endblock %}
+
+{% block content %}
+<body class="user-page">
+    <div class="page">
+        <div class="hero">
+    
+            <div class="m-header-card">
+                <p class="subtitle"><strong>Member Dashboard</strong></p>
+                <p class="description">
+                    Efficiently access and manage <span>member profiles</span>, monitor <span>membership status</span>, 
+                    and track <span>activity logs</span> within the <strong>NwSSU Gym Tracker</strong>. 
+                    Streamline operations and ensure a seamless experience for all members.
+                </p>
+            </div>
+
+
+            <!-- Welcome Section -->
+            <div class="welcome-card">
+                <h1>Welcome, {{ member.first_name }}!</h1>
+                <p class="welcome-info">
+                    Member ID: <strong>{{ member.unique_code }}</strong> |
+                    Status: <span class="status-badge status-{{ member.status.lower() }}">{{ member.status }}</span>
+                    Payment Status: <span class="status-badge status-{{ member.payment_status.lower() }}">{{ member.payment_status }}</span>
+                </p>
+            </div>
+
+            <!-- Attendance Section -->
+            <div class="attendance-section">
+                <div class="attendance-card">
+                    <h2 class="card-title">
+                        <i class="fas fa-calendar-check"></i> Attendance Check-In
+                    </h2>
+                    <div class="attendance-buttons">
+                        <button class="time-in-btn" id="time-in">Time In</button>
+                        <button class="time-out-btn" id="time-out">Time Out</button>
+                    </div>
+                    <p id="attendance-status" class="attendance-status"></p>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-id-card"></i></div>
+                    <div class="stat-content">
+                        <h3 class="stat-label">Membership</h3>
+                        <p class="stat-value">{{ member.gym_plan }}</p>
+                        <p class="stat-description">{{ member.member_type }}</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-days"></i></div>
+                    <div class="stat-content">
+                        <h3 class="stat-label">Days Remaining</h3>
+                        <p class="stat-value">{{ days_remaining }}</p>
+                        <p class="stat-description">Expires {{ member.end_date.strftime('%b %d, %Y') }}</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-content">
+                        <h3 class="stat-label">Attendance</h3>
+                        <p class="stat-value">{{ attendance_count }}</p>
+                        <p class="stat-description">Total days attended</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Recent Workouts Section -->
+            <div class="section-card">
+                <h2 class="section-title">
+                    <i class="fas fa-clock-rotate-left"></i> Recent Workouts
+                </h2>
+
+                {% if recent_workouts %}
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Exercise Type</th>
+                                <th>Duration</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for workout in recent_workouts %}
+                            <tr>
+                                <td>{{ workout.workout_date.strftime('%b %d, %Y %I:%M %p') }}</td>
+                                <td><span class="exercise-badge">{{ workout.exercise_type }}</span></td>
+                                <td>{{ workout.duration_minutes }} min</td>
+                                <td>{{ workout.calories_burned or '-' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>No workouts logged yet</p>
+                    <small>Coming Soon Features!</small>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='global/js/user_membership.js')}}"></script>
+{% endblock %}

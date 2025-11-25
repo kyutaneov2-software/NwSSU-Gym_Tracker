@@ -1,0 +1,69 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Admin Member Login - NwSSU Gym Tracker{% endblock %}
+
+{% block navbar %}
+<!-- No navbar for auth pages -->
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages" style="width: 100%; max-width: 500px; margin-bottom: 2rem;">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="NwSSU Logo" class="auth-logo">
+                <h1>Admin Member Login</h1>
+                <p class="auth-subtitle">
+                    Use your Email and Member ID provided by the admin
+                </p>
+            </div>
+
+            <!-- Login Form -->
+            <form method="POST" action="{{ url_for('userAuth.admin_member_login') }}" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email"
+                            id="email"
+                            name="email"
+                            required
+                            autofocus
+                            placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="unique_code">Member ID</label>
+                    <input type="text"
+                            id="unique_code"
+                            name="unique_code"
+                            required
+                            placeholder="STU-0001, FCT-0001, OTD-0001"
+                            style="text-transform: uppercase;">
+                    <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                        Your Member ID was provided by the admin when your account was created
+                    </small>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Login
+                </button>
+                <a href="{{ url_for('main.index') }}" class="btn-auth-back">← Back to Home</a>
+            </form>
+
+            <div class="auth-footer">
+                <p class="dev-credit">Developed by <strong>NwSSU DevCore</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

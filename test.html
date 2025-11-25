@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Message</title>
+</head>
+<body>
+    <style>
+
+        body{
+            background-color: rgb(35, 35, 35);
+            color: white;
+            text-align: center;
+            align-items: center;
+        }
+        .container-field{
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 0;
+            text-align: left;
+        }
+        .email-area{
+            padding: 10px;
+        }
+        .message-area{
+            background-color: aquamarine;
+            height: 60px;
+            padding: 10px 20px;
+            color: rgb(0, 0, 0);
+        }
+        .submit-btn{
+            padding: 10px;
+        }
+
+        .submit-btn:hover{
+            cursor: pointer;
+        }
+
+    </style>
+
+
+    <h1>We would like to have your feedback</h1>
+    <hr>
+    <div class="container-field">
+        <label style="padding-left: 10px;">Email</label>
+        <br>
+        <input class="email-area" type="email" name="" id="email" placeholder="Enter your email"> <br>
+        <textarea class="message-area" name="message" id=message" cols="60"  placeholder="Enter your message here"></textarea> 
+        <br>
+        <button class="submit-btn" id="submit-btn">Leave message</button>
+    </div>
+    <h3 id="message">-</h3>
+
+    <input type="text" name="firstname" id="">
+
+
+    <script>
+        const email = document.getElementById("email").value;
+        const btn = document.getElementById("submit-btn").value;
+
+        
+    </script>
+</body>
+</html>

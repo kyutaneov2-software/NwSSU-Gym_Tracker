@@ -1,0 +1,133 @@
+{% extends "admin/base.html" %}
+
+{% block title %}NwSSU Gym Tracker - Admin Portal{% endblock %}
+
+{% block navbar %} 
+
+    <!-- Admin Navbar -->
+    <label class="Navbar-holder">
+        <input class="burger-sidebar" type="checkbox">
+        <div class="toggle-sidebar">
+            <span class="top_line common"></span>
+            <span class="middle_line common"></span>
+            <span class="bottom_line common"></span>
+        </div>
+
+        <div class="side-bar">
+            <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="" class="Gym-logo">
+            <h1 class="side-title">NwSSU System</h1>
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('main.admin')}}" class="{% if page == 'dashboard' %}active{% endif %}"><i class="fas fa-gauge"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('main.statistics')}}"><i class="fas fa-chart-line"></i> Statistics</a></li>
+                <li><a href="{{ url_for('addMember.add_member')}}"><i class="fas fa-users"></i> Members</a></li>
+                <!-- For Future Features
+                <li><a href="#"><i class="fas fa-dumbbell"></i> Coaches</a></li>
+                <li><a href="#"><i class="fas fa-gear"></i> Settings</a></li>
+                -->
+            </ul>
+            <div class="logout-sidelink">
+                <a href="{{ url_for('adminAuth.admin_logout') }}">
+                    <i class="fas fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+    </label>
+{% endblock %}
+
+{% block content %}
+    <div class="page">
+        <div class="hero">
+
+            <div class="m-header-card">
+                <p class="subtitle"><strong>ADMIN DASHBOARD</strong></p>
+                <p class="description">
+                    Monitor and manage <span>all member information</span>, track <span>membership statuses</span>, 
+                    and oversee <span>activities and operations</span> across the <strong>NwSSU Gym Tracker</strong> system. 
+                    Gain real-time insights and streamline gym administration for optimal performance.
+                </p>
+            </div>
+
+            <!-- ================== REVENUE CARDS ================== -->
+            <section class="stats-grid">
+                <div class="statistics-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-day stat-icon"></i>
+                        <h3 class="card-title">Daily Revenue</h3>
+                    </div>
+                    <p id="dailyRevenueDisplay" class="card-value">₱0.00</p>
+                </div>
+                <div class="statistics-card">
+                    <div class="card-header">
+                        <i class="fas fa-calendar-alt stat-icon"></i>
+                        <h3 class="card-title">Monthly Revenue</h3>
+                    </div>
+                    <p id="monthlyRevenueDisplay" class="card-value">₱0.00</p>
+                </div>
+                <div class="statistics-card">
+                    <div class="card-header">
+                        <i class="fas fa-coins stat-icon"></i>
+                        <h3 class="card-title">Total Revenue</h3>
+                    </div>
+                    <p id="totalRevenueDisplay" class="card-value">₱0.00</p>
+                </div>
+            </section>
+
+            <!-- ================== STATISTICS SUMMARY SECTION ================== -->
+            <div class="statistics-dashboard">
+                <div class="chart-card">
+                    <h3 class="chart-title">Membership Overall Month Overview</h3>
+                    <canvas id="membershipChart"></canvas>
+                </div>
+
+                <section class="charts-section">
+                    <div class="chart-card">
+                        <h3 class="chart-title">Member Status Overview</h3>
+                        <canvas id="renewalChart"></canvas>
+                    </div> 
+                    
+                    <div class="chart-card">
+                        <h3 class="chart-title">Active Members</h3>
+                        <canvas id="expirationChart"></canvas>
+                    </div>
+                </section>
+
+                <div class="statistics-summary">
+                    <div class="summary-card">
+                        <i class="fas fa-users summary-icon"></i>
+                        <h3>Total Members</h3>
+                        <p>—</p>
+                    </div>
+                    <div class="summary-card">
+                        <i class="fas fa-user-check summary-icon"></i>
+                        <h3>Active Members</h3>
+                        <p>—</p>
+                    </div>
+                    <div class="summary-card">
+                        <i class="fas fa-chart-bar summary-icon"></i>
+                        <h3>Most Active Group</h3>
+                        <p>—</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================== FOOTER ================== -->
+            <div class="m-footer-card">
+                <p class="footer-title"><strong>NwSSU Gym Tracker</strong></p>
+                <p class="footer-description">
+                    A comprehensive system to monitor <span>memberships</span>, track <span>activities</span>, 
+                    and provide <span>insights</span> for efficient gym management. Stay informed and in control across all pages.
+                </p>
+                <div class="footer-line"></div>
+                <p class="footer-note">© 2025 NwSSU Gym Tracker | Developed by <span>NwSSU DevCore</span></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='global/js/charts.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/tables.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/members.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/statistics.js')}}"></script>
+{% endblock %}

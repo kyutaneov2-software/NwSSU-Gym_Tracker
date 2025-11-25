@@ -1,0 +1,59 @@
+{% extends "admin/base.html" %}
+
+{% block title %}NwSSU Gym Tracker - admin-login{% endblock %}
+
+{% block content %}
+
+<div class="page">
+    <div class="hero">
+        <div class="Header">
+            <div class="logo">NwSSU</div>
+            <h1 class="header-title" >Administrator Authentication</h1>
+            <p class="subtitle">Secure Access Required</p>
+            <p class="description">
+                Please enter your administrator credentials to access the NwSSU Gym Tracker admin portal. Ensure that you have the necessary permissions to manage sales, records, and user data.
+            </p>
+        </div>
+        
+        <div class="auth-container">
+            <div class="auth-header">
+                <i class="fa-solid fa-lock auth-icon"></i>
+                <h2 class="auth-title">Admin Login</h2>
+                <p class="auth-subtitle">Authorized personnel only</p>
+            </div>
+
+            <form class="admin-login-form" method="POST" action="{{ url_for('adminAuth.admin_login') }}">
+                <div class="input-group">
+                    <label for="username" class="lb-input">Username</label>
+                    <input type="text" id="username" class="input-auth" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="input-group password-group">
+                    <label for="password" class="lb-input">Password</label>
+                    <div class="password-wrapper">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="input-auth" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            required
+                        >
+                        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-auth">Login</button>
+            </form>
+
+            <a href="{{ url_for('main.index') }}" class="btn-auth-back">← Back to Home</a>
+            <p class="dev-credit">Developed by <strong>NwSSU DevCore</strong></p>
+        </div>
+
+    </div>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='global/js/main.js') }}"></script>
+{% endblock %}

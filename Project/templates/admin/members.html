@@ -1,0 +1,539 @@
+{% extends "admin/base.html" %}
+
+{% block title %}NwSSU Gym Tracker - Members{% endblock %}
+
+{% block navbar %} 
+
+    <!-- ================== ADMIN NAVBAR SECTION ================== -->
+    <label class="Navbar-holder">
+        <input class="burger-sidebar" type="checkbox">
+        <div class="toggle-sidebar">
+            <span class="top_line common"></span>
+            <span class="middle_line common"></span>
+            <span class="bottom_line common"></span>
+        </div>
+
+        <div class="side-bar">
+            <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="" class="Gym-logo">
+            <h1 class="side-title">NwSSU Gym</h1>
+            <ul class="sidebar-menu">
+                <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{{ url_for('main.admin')}}" class="{% if page == 'dashboard' %}active{% endif %}"><i class="fas fa-gauge"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('main.statistics')}}"><i class="fas fa-chart-line"></i> Statistics</a></li>
+                <li><a href="{{ url_for('addMember.add_member')}}"><i class="fas fa-users"></i> Members</a></li>
+                <!-- For Future Features
+                <li><a href="#"><i class="fas fa-dumbbell"></i> Coaches</a></li>
+                <li><a href="#"><i class="fas fa-gear"></i> Settings</a></li>
+                -->
+            </ul>
+            <div class="logout-sidelink">
+                <a href="{{ url_for('adminAuth.admin_logout') }}">
+                    <i class="fas fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </div>
+    </label>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+        <!-- ================== MEMBER MANAGEMENT SECTION ================== -->
+        <div class="m-header-card">
+            <p class="subtitle"><strong>Member Management</strong></p>
+            <p class="description">
+                Efficiently access and manage <span>member profiles</span>, monitor <span>membership status</span>, 
+                and track <span>activity logs</span> within the <strong>NwSSU Gym Tracker</strong>. 
+                Streamline operations and ensure a seamless experience for all members.
+            </p>
+        </div>
+
+        <!-- ================== MEMBER SUMMARY STATS SECTION SECTION ================== -->
+        <div class="member-dashboard">
+            <div class="member-summary">
+                <div class="summary-card">
+                    <i class="fas fa-users summary-icon"></i>
+                    <h3>Total Members</h3>
+                    <p>—</p>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-user-check summary-icon"></i>
+                    <h3>Active Members</h3>
+                    <p>—</p>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-chart-bar summary-icon"></i>
+                    <h3>Most Active Group</h3>
+                    <p>—</p>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title">Membership Overall Month Overview</h3>
+                <canvas id="membershipChart"></canvas>
+            </div>
+        </div>
+
+        <!-- ================== MEMBER CHARTS SECTION SECTION => MOVE TO STATISTICS
+        <section class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">Member Status Overview</h3>
+                <canvas id="renewalChart"></canvas>
+            </div> 
+            
+            <div class="chart-card">
+                <h3 class="chart-title">Active Members</h3>
+                <canvas id="expirationChart"></canvas>
+            </div>
+        </section>
+        ================== -->
+    
+        <!-- ================== MEMBER TABLE SECTION SECTION ================== -->
+        <div class="features">
+            <div class="feature">
+                <h3 class="table-title">Registered Members</h3>
+
+                <!-- FILTER BAR -->
+                <div class="filter-bar">
+                    <div class="filter-group title">
+                        <h3><i class="fas fa-filter"></i> Filters</h3>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterID">Unique ID:</label>
+                        <input type="text" id="filterID" placeholder="Search ID..." class="filter-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterType">Member Type:</label>
+                        <select id="filterType" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Outsider">Outsider</option>
+                            <option value="Student">Student</option>
+                            <option value="Faculty">Faculty</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterPlan">Plan:</label>
+                        <select id="filterPlan" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="Annual">Annual</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterStatus">Status:</label>
+                        <select id="filterStatus" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                            <option value="Expired">Expired</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--Member Management Tools here-->
+                <button class="btn btn-add" id="openModalBtn">
+                    <i class="fas fa-plus"></i> Add Member
+                </button>
+
+                <!-- TABLE -->
+                <div class="table-container" id="registeredTable">
+                    <div class="table-scroll">
+                        <table class="registered-member-table">
+                            <thead>
+                                <tr>
+                                    <th>Unique ID</th>
+                                    <th>Full Name</th>
+                                    <th>Member Type</th>
+                                    <th>Plan</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="memberTableBody">
+                                {% for member in members %}
+                                <tr>
+                                    <!-- Show unique_code instead of member_id -->
+                                    <td>{{ member.unique_code }}</td>
+                                    <td>{{ member.first_name }} {{ member.last_name }}</td>
+                                    <td>{{ member.member_type }}</td>
+                                    <td>{{ member.gym_plan }}</td>
+                                    <td class="{{ 'active-status' if member.status == 'Active' else 'inactive-status' }}">
+                                        {{ member.status }}
+                                    </td>
+                                    <td class="{{ 'active-status' if member.payment_status == 'Paid' else 'inactive-status' }}">
+                                        {{ member.payment_status }}
+                                    </td>
+                                    <td id="table-btn" class="table-actions">
+                                        <button class="table-btn view" data-id="{{ member.member_id }}">
+                                            <h6>view</h6>
+                                        </button>
+                                        <button class="table-btn edit" data-id="{{ member.member_id }}">
+                                            <h6>edit</h6>
+                                        </button>
+                                        <button class="table-btn delete" data-id="{{ member.member_id }}">
+                                            <h6>delete</h6>
+                                        </button>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="6" style="text-align:center; color:#888;">No members found</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PAGINATION CONTROLS -->
+                <div class="pagination-container">
+                    <button id="prevPage" class="page-btn">Previous</button>
+                    <div id="pageNumbers" class="page-numbers"></div>
+                    <button id="nextPage" class="page-btn">Next</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================== MEMBERSHIP RENEWAL REQUESTS TABLE ================== -->
+        <div class="features">
+            <div class="feature">
+                <h3 class="table-title">Renewal Requests</h3>
+
+                <!-- FILTER BAR -->
+                <div class="filter-bar">
+                    <div class="filter-group title">
+                        <h3><i class="fas fa-filter"></i> Filters</h3>
+                    </div>
+
+                    <!-- UNIQUE ID FILTER -->
+                    <div class="filter-group">
+                        <label for="filterRenewalID">Unique ID:</label>
+                        <input type="text" id="filterRenewalID" placeholder="Search ID..." class="filter-input">
+                    </div>
+
+                    <!-- MEMBER TYPE FILTER -->
+                    <div class="filter-group">
+                        <label for="filterMemberType">Member Type:</label>
+                        <select id="filterMemberType" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Student">Student</option>
+                            <option value="Faculty">Faculty</option>
+                            <option value="Outsider">Outsider</option>
+                        </select>
+                    </div>
+
+                    <!-- CURRENT PLAN FILTER -->
+                    <div class="filter-group">
+                        <label for="filterCurrentPlan">Current Plan:</label>
+                        <select id="filterCurrentPlan" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Daily">Daily</option>
+                            <option value="Monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <!-- STATUS FILTER -->
+                    <div class="filter-group">
+                        <label for="filterRenewalStatus">Status:</label>
+                        <select id="filterRenewalStatus" class="filter-select">
+                            <option value="">All</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Denied">Denied</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- RENEWAL TABLE -->
+                <div class="table-container" id="renewalTableContainer">
+                    <div class="table-scroll">
+                        <table class="renewal-member-table">
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Member Name</th>
+                                    <th>Member Type</th>
+                                    <th>Current Plan</th>
+                                    <th>Requested Plan</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <!-- FIXED: Added ID -->
+                            <tbody id="renewalTableBody">
+                                {% for request in renewal_requests %}
+                                <tr>
+                                    <td>{{ request.id }}</td>
+                                    <td>{{ request.member.first_name if request.member else '-' }} {{ request.member.last_name if request.member else '' }}</td>
+                                    <td>{{ request.member.member_type if request.member else '-' }}</td>
+                                    <td>{{ request.member.gym_plan if request.member else '-' }}</td>
+                                    <td>{{ request.requested_plan }}</td>
+                                    <td class="{% if request.status=='Pending' %}pending-status{% elif request.status=='Approved'%}approved-status{% else %}denied-status{% endif %}">
+                                        {{ request.status }}
+                                    </td>
+                                    <td>
+                                        {% if request.status == 'Pending' %}
+                                            <button class="table-btn approve" data-url="{{ url_for('addMember.handle_renewal_request', request_id=request.id) }}">Approve</button>
+                                            <button class="table-btn deny" data-url="{{ url_for('addMember.handle_renewal_request', request_id=request.id) }}">Deny</button>
+                                        {% elif request.status in ['Approved', 'Denied'] %}
+                                            <button class="table-btn delete" data-id="{{ request.id }}">Delete</button>
+                                        {% else %}
+                                            <span>-</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr><td colspan="7" style="text-align:center;color:#888;">No renewal requests</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FIXED PAGINATION -->
+                <div class="pagination-container">
+                    <button id="prevRenewalPage" class="page-btn">Previous</button>
+                    <div id="renewalPageNumbers" class="page-numbers"></div>
+                    <button id="nextRenewalPage" class="page-btn">Next</button>
+                </div>
+
+            </div>/
+        </div>
+
+        <!-- ================== FOOTER ================== -->
+        <div class="m-footer-card">
+            <p class="footer-title"><strong>NwSSU Gym Tracker</strong></p>
+            <p class="footer-description">
+                A comprehensive system to monitor <span>memberships</span>, track <span>activities</span>, 
+                and provide <span>insights</span> for efficient gym management. Stay informed and in control across all pages.
+            </p>
+            <div class="footer-line"></div>
+            <p class="footer-note">© 2025 NwSSU Gym Tracker | Developed by <span>NwSSU DevCore</span></p>
+        </div>
+
+        <!-- ================== VIEW MEMBER MODAL HIDDEN BY DEFAULT ================== -->
+        <div id="memberInformation" class="member-modal-overlay" aria-hidden="true" role="dialog">
+            <div class="member-modal-content" role="document">
+                    <div class="member-info-card">
+                    <button class="member-info-close" id="closeMemberInfoBtn" aria-label="Close">&times;</button>
+
+                    <div class="member-info-header">
+                        <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="Profile" class="member-image">
+                        <h2 id="infoName"></h2>
+                        <p class="member-id" id="infoMemberId"></p>
+                    </div>
+
+                    <div class="member-info-section">
+                        <h3>Profile</h3>
+                        <table>
+                        <tr><td>Age</td><td id="infoAge"></td></tr>
+                        <tr><td>Gender</td><td id="infoGender"></td></tr>
+                        <tr><td>Member Type</td><td id="infoType"></td></tr>
+                        <tr><td>Gym Plan</td><td id="infoPlan"></td></tr>
+                        <tr><td>Email</td><td id="infoEmail"></td></tr>
+                        <tr><td>Contact</td><td id="infoContact"></td></tr>
+                        <tr><td>Address</td><td id="infoAddress"></td></tr>
+                        </table>
+                    </div>
+
+                    <div class="member-info-section">
+                        <h3>Membership</h3>
+                        <table>
+                        <tr><td>Start Date</td><td id="infoStart"></td></tr>
+                        <tr><td>End Date</td><td id="infoEnd"></td></tr>
+                        <tr><td>Status</td><td id="infoStatus"></td></tr>
+                        <tr><td>Status</td><td id="infoPayment"></td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================== EDIT MEMBER MODAL HIDDEN BY DEFAULT ================== -->
+        <div id="editMemberModal" class="member-modal-overlay" aria-hidden="true">
+            <div class="edit-member-content" role="document">
+                <button class="edit-member-close" id="closeEditModalBtn">&times;</button>
+                <h2>Edit Member</h2>
+
+                <form id="editMemberForm" class="edit-member-form">
+                    <input type="hidden" id="editHiddenId">
+
+                    <label>First Name</label>
+                    <input type="text" id="editFirstName" required>
+
+                    <label>Last Name</label>
+                    <input type="text" id="editLastName" required>
+
+                    <label>Age</label>
+                    <input type="number" id="editAge" min="0">
+
+                    <label>Gender</label>
+                    <select id="editGender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+
+                    <label>Gym Plan</label>
+                    <select id="editPlan">
+                        <option>Daily</option>
+                        <option>Monthly</option>
+                        <option>Annual</option>
+                    </select>
+
+                    <label>Email</label>
+                    <input type="email" id="editEmail" autocomplete="email">
+
+                    <label>Contact</label>
+                    <input type="tel" id="editContact">
+
+                    <label>Address</label>
+                    <input type="text" id="editAddress">
+
+                    <label>Start Date</label>
+                    <input type="date" id="editStart" required>
+
+                    <label>End Date</label>
+                    <input type="date" id="editEnd" required>
+
+                    <label>Status</label>
+                    <select id="editStatus">
+                        <option>Active</option>
+                        <option>Inactive</option>
+                        <option>Expired</option>
+                    </select>
+
+                    <label>Payment Status</label>
+                    <select id="paymentStatus">
+                        <option>Paid</option>
+                        <option>Unpaid</option>
+                    </select>
+
+                    <div class="edit-member-actions">
+                        <button type="submit" class="save-member-btn">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ================== MEMBER MODAL REGISTRATION HIDDEN BY DEFAULT ================== -->
+        <div id="memberModal" class="member-modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="memberModalTitle">
+            <div class="member-modal-content" role="document">
+
+                <!-- Title and Logo -->
+                <div class="member-modal-header">
+                    <img src="{{ url_for('static', filename='global/images/icon-removebg.png') }}" alt="Gym Logo" class="member-logo">
+                    <h2 id="memberModalTitle">Register New Member</h2>
+                </div>
+                <p class="form-subtext">
+                    Fill out the details below to register a new gym member into the system.
+                </p>
+                
+                <!-- Member Registration Form -->
+                <form id="memberRegisterForm" method="POST" action="{{ url_for('addMember.add_member') }}">
+                    <div class="member-input-group">
+                        <label>First Name:</label>
+                        <input type="text" name="first_name" required>
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Last Name:</label>
+                        <input type="text" name="last_name" required>
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Age:</label>
+                        <input type="number" name="age" min="0">
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Gender:</label>
+                        <select name="gender">
+                            <option value="">Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Member Type:</label>
+                        <select id="member_type" name="member_type" required>
+                            <option value="">Select Type</option>
+                            <option>Faculty</option>
+                            <option>Outsider</option>
+                            <option>Student</option>
+                        </select>
+                    </div>
+
+                    <!-- Hidden span for Student Number -->
+                    <span id="studentField" class="member-input-group hidden">
+                        <label>Student Number:</label>
+                        <input type="text" name="student_number">
+                    </span>
+
+                    <div class="member-input-group">
+                        <label>Gym Plan:</label>
+                        <select name="gym_plan" required>
+                            <option value="">Select Plan</option>
+                            <option>Daily</option>
+                            <option>Monthly</option>
+                            <option>Annual</option>
+                        </select>
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Email:</label>
+                        <input type="email" name="email" autocomplete="email">
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Contact Number:</label>
+                        <input type="tel" name="contact_number" pattern="[0-9]{11}" maxlength="11">
+                    </div>
+
+                    <div class="member-input-group">
+                        <label>Address:</label>
+                        <input type="text" name="address">
+                    </div>
+
+                    <div class="member-input-group">
+                        <label for="Start_date">Start Date:</label>
+                        <input type="date" id="Start_date" name="Start_date">
+                    </div>
+
+                    <div class="member-input-group">
+                        <label for="End_date">End Date:</label>
+                        <input type="date" id="End_date" name="End_date">
+                    </div>
+
+
+                    <!-- Action Buttons -->
+                    <div class="member-btn-container">
+                        <button type="submit" class="btn member-btn-auth"><span>Register Member</span></button>
+                        <button type="button" class="btn member-btn-back" id="cancelModalBtn"><span>Cancel</span></button>
+                    </div>
+
+                    <!-- Note for One-Time Setup -->
+                    <div class="member-note">
+                        <p><strong>One-Time Setup:</strong> Please ensure all information is accurate before registering a new member. 
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='global/js/charts.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/tables.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/members.js')}}"></script>
+    <script src="{{ url_for('static', filename='global/js/statistics.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "user/user_base.html" %}
+
+{% block title %}Login - NwSSU Gym Tracker{% endblock %}
+
+{% block navbar %}
+<!-- No navbar for auth pages -->
+{% endblock %}
+
+{% block content %}
+<div class="page">
+    <div class="hero">
+        <div class="auth-card">
+            <div class="auth-header">
+                <img src="{{ url_for('static', filename='global/images/icon-removebg.png')}}" alt="NwSSU Logo" class="auth-logo">
+                <h2 class="auth-title">Welcome</h2>
+                <p class="auth-subtitle">Login to your NwSSU Gym Tracker account</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('userAuth.user_login') }}" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email"
+                            id="email"
+                            name="email"
+                            required
+                            autofocus
+                            placeholder="your.email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password"
+                            id="password"
+                            name="password"
+                            required
+                            placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="btn-auth">Login</button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="{{ url_for('main.index') }}" class="btn-auth-back">← Back to Home</a>
+                <p>Don't have an account? <a href="{{ url_for('userAuth.user_register') }}">Register here</a></p>
+                <p>Account created by admin? <a href="{{ url_for('userAuth.activate_account') }}">Activate it here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

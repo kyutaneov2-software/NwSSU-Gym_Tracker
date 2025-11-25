@@ -1,0 +1,49 @@
+/*  UTILITIES.CSS - Small utility helpers to reduce repetition and improve discoverability
+    Purpose: Tiny reusable helpers (spacing, alignment, accessibility) used across components.
+    Where to add new styles: Add small, single-purpose utilities here. Keep them atomic (e.g. .mt-1, .u-center).
+    Avoid complex selectors here — keep utilities focused and generic.
+*/
+
+/* Layout */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+.u-center { text-align: center; }
+.u-hidden { display: none !important; }
+.u-flex { display: flex; }
+.u-flex-center { display:flex; align-items:center; justify-content:center; }
+
+/* Spacing helpers (small set) */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+/* Text helpers */
+.text-muted { color: var(--text-secondary); }
+.text-primary { color: var(--text-primary); }
+
+/* Accessibility */
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Utility for max-width box used across components */
+.max-md { max-width: 720px; }
+
+/* Button helper: full-width on small screens (can be reused instead of repeating media queries) */
+@media (max-width: 768px) {
+    .btn--responsive-full { width: 100%; padding: 0.8rem 1rem; font-size: 0.95rem; }
+}

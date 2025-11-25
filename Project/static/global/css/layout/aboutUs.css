@@ -1,0 +1,101 @@
+/* Team grid - infinite auto scroll */
+.team-images {
+    display: flex;
+    gap: 25px;
+    overflow: hidden; /* hide scroll bar */
+    justify-content: flex-start;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* Wrapper for scrolling animation */
+.team-images .scrolling-wrapper {
+    display: flex;
+    gap: 25px;
+    animation: scroll-left 20s linear infinite;
+}
+
+/* Duplicate the team members inside scrolling-wrapper for seamless loop */
+.team-images .scrolling-wrapper .team-member {
+    flex: 0 0 200px;
+}
+
+/* Animation */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Profile image inside card */
+.team-member img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent-secondary);
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover img {
+    transform: scale(1.08);
+    box-shadow: 0 8px 18px rgba(0, 255, 255, 0.3);
+}
+
+/* Card hover effect */
+.team-member {
+    text-align: center;
+    background: var(--bg-primary);
+    border: 2px solid rgba(0, 255, 255, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.05);
+    padding: 20px 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 255, 255, 0.2);
+    border-color: var(--accent-primary);
+}
+
+/* Name and role */
+.team-member .name {
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin-bottom: 4px;
+}
+
+.team-member .role {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .team-images .scrolling-wrapper {
+        animation-duration: 20s; /* faster on mobile */
+    }
+
+    .team-member {
+        flex: 0 0 160px;
+        padding: 15px 10px;
+    }
+
+    .team-member img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .team-member .name {
+        font-size: 0.95rem;
+    }
+
+    .team-member .role {
+        font-size: 0.8rem;
+    }
+}

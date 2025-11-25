@@ -1,0 +1,149 @@
+/* Auth card styling using admin theme */
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 10px 40px var(--shadow-color);
+    backdrop-filter: blur(10px);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.auth-logo {
+    width: 130px;
+    height: 130px;
+}
+
+.auth-header h1 {
+    color: #5fd0e0;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.auth-form {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--accent-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.form-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.auth-footer {
+    text-align: center;
+}
+
+.auth-footer p {
+    color: var(--text-secondary);
+    margin: 0.5rem 0;
+}
+
+.auth-footer a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.auth-footer a:hover {
+    color: var(--accent-secondary);
+    text-decoration: underline;
+}
+
+/* Flash messages */
+.flash-message {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.flash-message::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.flash-message.error {
+    background: rgba(255, 80, 80, 0.1);
+    color: #ff5050;
+    border: 1px solid rgba(255, 80, 80, 0.3);
+}
+
+.flash-message.error::before {
+    content: "\f071";
+}
+
+.flash-message.success {
+    background: rgba(80, 255, 80, 0.1);
+    color: #50ff50;
+    border: 1px solid rgba(80, 255, 80, 0.3);
+}
+
+.flash-message.success::before {
+    content: "\f058";
+}
+
+.flash-message.warning {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.flash-message.warning::before {
+    content: "\f06a";
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+    .form-group input{
+        font-size: 0.8rem;
+    }
+}

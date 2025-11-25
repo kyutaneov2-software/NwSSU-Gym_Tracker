@@ -1,0 +1,142 @@
+/* USER_NAVBAR.CSS - Horizontal navbar for user pages
+   Purpose: Clean, professional horizontal navigation bar
+   Design: Matches admin theme (dark + cyan accents), website-style layout
+*/
+
+.user-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    padding: 0.8rem 2rem;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.user-navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left side - Logo and links */
+.user-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--accent-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.user-navbar-logo img {
+    width: 35px;
+    height: 35px;
+}
+
+.user-navbar-logo:hover {
+    color: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+.user-navbar-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.user-navbar-links a {
+    padding: 0.6rem 1.2rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-navbar-links a:hover {
+    background: var(--card-bg);
+    color: var(--accent-primary);
+}
+
+.user-navbar-links a.active {
+    background: var(--card-bg);
+    color: var(--accent-primary);
+    border: 1px solid var(--card-border);
+}
+
+/* Right side - User info and logout */
+.user-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-navbar-name {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.user-navbar-logout {
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 80, 80, 0.1);
+    color: #ff5050;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 80, 80, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-navbar-logout:hover {
+    background: rgba(255, 80, 80, 0.2);
+    border-color: #ff5050;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    .user-navbar-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .user-navbar-left {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .user-navbar-links {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .user-navbar-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .user-navbar-name {
+        display: none;
+    }
+}

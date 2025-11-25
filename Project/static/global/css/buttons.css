@@ -1,0 +1,195 @@
+/* BUTTONS.CSS - Centralized button & badge styles
+    Purpose: All button variants and button-related utilities live here (.btn, .btn-primary, .btn-secondary, .btn-admin, .btn-back, .btn-auth).
+    Where to add new styles: add new button variants or size helpers here. Avoid adding component layout styles — put those in components/*.css.
+*/
+
+.btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+button a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Primary Button */
+.btn-primary {
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: #000;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-primary);
+    border: 2px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateY(-3px);
+}
+
+/* Admin Button */
+.btn-admin {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #000;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+}
+
+.btn-admin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+}
+
+.admin-badge {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: #FFD700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+/* Back Button */
+.btn-back {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid var(--text-secondary);
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+}
+
+.btn-back:hover {
+    background: var(--text-secondary);
+    color: var(--bg-primary);
+    
+}
+
+/* Authentication-specific button utilities */
+.btn-auth {
+    background: var(--accent-primary);
+    color: #000;
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    background: var(--accent-secondary);
+}
+
+.btn-auth-back {
+    display: block;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 2px solid var(--text-secondary);
+    padding: 0.8rem 2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-top: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-auth-back:hover {
+    background: var(--text-secondary);
+    color: var(--bg-primary);
+}
+
+.btn-add {
+    background: transparent;
+    color: #00d9ff;
+    padding: 0.65rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 217, 255, 0.7);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.15);
+}
+
+/* subtle glow and neon fill on hover */
+.btn-add:hover {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.25), rgba(0, 140, 255, 0.35));
+    border-color: #00e5ff;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.4), 0 0 24px rgba(0, 140, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* optional glow line animation */
+.btn-add::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+}
+
+.btn-add:hover::before {
+    left: 100%;
+}
+
+/* focus style for accessibility */
+.btn-add:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.6);
+}
+
